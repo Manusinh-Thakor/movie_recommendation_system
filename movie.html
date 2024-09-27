@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .movie-container {
+            margin: 20px auto;
+        }
+        .movie-poster {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+        }
+        .recommendations {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Recommender System</h1>
+    <form method="post">
+        <input type="text" name="movie_name" placeholder="Enter movie name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if main_movie_poster %}
+    <div class="movie-container">
+        <h2>Main Movie Poster</h2>
+        <img src="{{ main_movie_poster }}" alt="Main Movie Poster" class="movie-poster">
+    </div>
+    <div class="movie-container">
+        <h2>Recommended Movies</h2>
+        <div class="recommendations">
+            {% for poster in recommended_posters %}
+            <img src="{{ poster }}" alt="Recommended Movie Poster" class="movie-poster">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+    <style>
+        :root {
+            --background-color: #0c0000;
+            --text-color: #a7570c;
+            --button-background-color: #000000;
+            --button-text-color: #ffffff;
+            --border-color: #ccc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .movie-poster {
+            width: 200px;
+            height: 210px;
+            margin: 10px;
+        }
+        .recommendations {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .search-bar {
+            width: 60%;
+            height: 40px;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .search-button {
+            width: 140px;
+            height: 50px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            background-color: var(--button-background-color);
+            color: var(--button-text-color);
+        }
+        .main-movie {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommender System</h1>
+        <form method="post">
+            <input type="text" name="movie_name" class="search-bar" placeholder="Enter movie name" required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+
+        <div class="main-movie">
+            {% if main_movie %}
+                <h2>{{ main_movie }}</h2>
+                {% if main_movie_poster %}
+                    <img src="{{ main_movie_poster }}" alt="Main Movie Poster" class="movie-poster">
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <h2>Top Recommended Movies</h2>
+        <div class="recommendations">
+            {% for poster in recommended_posters %}
+                <div>
+                    <img src="{{ poster }}" alt="Recommended Movie Poster" class="movie-poster">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
